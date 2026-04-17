@@ -60,7 +60,6 @@ python setup_nltk.py
 ## Run the App
 
 ```bash
-export FLASK_SECRET_KEY="replace-this-with-a-random-secret"
 python app.py
 ```
 
