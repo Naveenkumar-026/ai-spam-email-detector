@@ -291,4 +291,4 @@ Do not use the default Flask secret key in production. Set your own `FLASK_SECRE
 
 ## License
 
-Add your preferred license here.
+MIT.
