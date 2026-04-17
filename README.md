@@ -108,14 +108,6 @@ http://mail-verification-login-security.com
 Failure to verify may result in temporary access loss.  
 IT Support Team
 
-## Notes Before Publishing
-
-- Keep `debug=False` for public/demo-ready code.
-- Do not commit secrets or local environment values.
-- Add a license before making the repository public.
-- Confirm you have redistribution rights for every dataset included.
-- If you keep the trained model in GitHub, prefer Git LFS.
-
 ## Suggested Future Improvements
 
 - Email header analysis (SPF, DKIM, Return-Path, Received chain)
