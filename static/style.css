@@ -1,0 +1,201 @@
+/* ====== General ====== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    color: #222;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ====== Form ====== */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+button {
+    display: block;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* ====== Result Box ====== */
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #e9f8ec;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+}
+
+.result-box h3 {
+    margin-top: 0;
+    color: #1b1b1b;
+}
+
+.result-box ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.token-list {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-left: 3px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+/* ====== Tabs ====== */
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.tab-buttons button {
+    flex: 1;
+    background: #ddd;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #444;
+    cursor: pointer;
+}
+
+.tab-buttons button.active {
+    background: #ccc;
+    color: #000;
+}
+
+/* ====== Dashboard & History ====== */
+.dashboard-box,
+.history-section {
+    margin-top: 20px;
+    padding: 18px;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* ====== Table ====== */
+.history-section table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.history-section th,
+.history-section td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.history-section th {
+    background-color: #f1f1f1;
+    font-weight: 600;
+}
+
+/* ====== Icons, Emojis, Highlighting ====== */
+strong {
+    font-weight: 600;
+}
+
+.token-list p {
+    margin: 5px 0;
+}
+
+/* ====== Category Tag ====== */
+.result-box .category {
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+/* ====== Responsive Design ====== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    textarea {
+        height: 100px;
+        font-size: 0.95em;
+    }
+
+    button {
+        font-size: 0.95em;
+        padding: 12px;
+    }
+
+    .result-box h3 {
+        font-size: 1.1em;
+    }
+
+    .tab-buttons {
+        flex-direction: column;
+    }
+
+    .tab-buttons button {
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .history-section table,
+    .dashboard-box {
+        font-size: 0.9em;
+        padding: 12px;
+    }
+
+    .history-section th,
+    .history-section td {
+        padding: 8px 6px;
+        font-size: 0.85em;
+    }
+
+    .result-box ul li {
+        font-size: 0.95em;
+    }
+
+    .token-list {
+        font-size: 0.85em;
+    }
+
+    .category {
+        font-size: 0.95em;
+    }
+}

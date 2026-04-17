@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Tab toggle logic
+        function showTab(tab) {
+            document.getElementById("dashboard-box").style.display = (tab === 'dashboard') ? "block" : "none";
+            document.getElementById("history-box").style.display = (tab === 'history') ? "block" : "none";
+
+            document.getElementById("dashboard-btn").classList.toggle("active", tab === 'dashboard');
+            document.getElementById("history-btn").classList.toggle("active", tab === 'history');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Email Spam Detection</h2>
+        <form method="POST">
+            <textarea name="email_text" placeholder="Paste your full email content here..." required></textarea>
+            <button type="submit">Check Spam</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h3><strong>Result:</strong> {{ result }}</h3>
+            <ul>
+                {% for reason in reasons %}
+                <li>👉 {{ reason }}</li>
+                {% endfor %}
+            </ul>
+
+            {% if flagged %}
+            <div class="token-list">
+                {% if flagged.links %}
+                <p>🔗 <strong>Links:</strong> {{ flagged.links | join(', ') }}</p>
+                {% endif %}
+                {% if flagged.spam_keywords %}
+                <p>🧪 <strong>Spam Keywords:</strong> {{ flagged.spam_keywords | join(', ') }}</p>
+                {% endif %}
+                {% if flagged.shouting_words %}
+                <p>🗣️ <strong>Uppercase Words:</strong> {{ flagged.shouting_words | join(', ') }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {% if category %}
+            <p class="category">📁 <strong>Category:</strong> {{ category }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <form action="/download-report" method="post" style="margin-top: 10px;">
+            <input type="hidden" name="score" value="{{ history[-1].score if history else "" }}">
+            <input type="hidden" name="category" value="{{ category }}">
+            <input type="hidden" name="reasons" value="{{ reasons | join('|') }}">
+            <input type="hidden" name="links" value="{{ flagged.links | join(', ') }}">
+            <input type="hidden" name="keywords" value="{{ flagged.spam_keywords | join(', ') }}">
+            <input type="hidden" name="uppercase" value="{{ flagged.shouting_words | join(', ') }}">
+            <input type="hidden" name="email" value="{{ request.form.get('email_text', '') }}">
+            <button type="submit">⬇️ Download Report (PDF)</button>
+        </form>
+        
+
+        {% if dashboard or history %}
+        <div class="tab-buttons">
+            <button id="dashboard-btn" onclick="showTab('dashboard')" class="active">📊 Dashboard</button>
+            <button id="history-btn" onclick="showTab('history')">📄 Scan History</button>
+        </div>
+        {% endif %}
+
+        {% if dashboard %}
+        <div id="dashboard-box" class="dashboard-box">
+            <h3>📊 Email Intelligence Dashboard</h3>
+            <p><strong>Total Scans:</strong> {{ dashboard.total_scans }}</p>
+            <p><strong>Clean Emails:</strong> {{ dashboard.clean_percentage }}%</p>
+            <p><strong>Spam Emails:</strong> {{ dashboard.spam_percentage }}%</p>
+
+            <div class="dashboard-lists">
+                {% if dashboard.top_links %}
+                <p><strong>🔗 Top Links:</strong> {{ dashboard.top_links | map(attribute=0) | join(', ') }}</p>
+                {% endif %}
+                {% if dashboard.top_keywords %}
+                <p><strong>🧪 Top Spam Keywords:</strong> {{ dashboard.top_keywords | map(attribute=0) | join(', ') }}</p>
+                {% endif %}
+                {% if dashboard.top_uppercase %}
+                <p><strong>🗣️ Top Uppercase Words:</strong> {{ dashboard.top_uppercase | map(attribute=0) | join(', ') }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if history %}
+        <div id="history-box" class="history-section" style="display: none;">
+            <h3>📄 Scan History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Result</th>
+                        <th>Score</th>
+                        <th>Preview</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in history %}
+                    <tr>
+                        <td>{{ item.timestamp }}</td>
+                        <td>{{ item.result }}</td>
+                        <td>{{ item.score }}%</td>
+                        <td>{{ item.preview }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
