@@ -1,9 +1,3 @@
- id="qlp0z9"
-╔══════════════════════════════════════════════════════════════╗
-║                  AI SPAM EMAIL DETECTOR                     ║
-║          Deep Learning • Flask • PDF Reports               ║
-╚══════════════════════════════════════════════════════════════╝
-
 # AI Spam Email Detector
 
 A Flask-based spam email detection application that uses a trained deep learning model to classify pasted email content as **Clean Email** or **Spam**. The app also extracts lightweight indicators such as suspicious links, spam keywords, uppercase/shouting patterns, category labels, scan history, and downloadable PDF reports.
