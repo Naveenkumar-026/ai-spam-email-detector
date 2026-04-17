@@ -35,14 +35,6 @@ This project may also include:
 - `fine_tuned_spam_detection_model.keras`
 - `tokenizer.pkl`
 
-You can publish the repository in one of two ways:
-
-### Option A — code-first public repo
-Commit the source code, templates, styling, documentation, and helper scripts only. Exclude the model, tokenizer, and large datasets.
-
-### Option B — reproducible repo
-Commit code plus model/tokenizer/datasets only if you have the right to redistribute them. Use Git LFS for large files when needed.
-
 ## Recommended Environment
 
 Tested successfully with **Python 3.11**.
